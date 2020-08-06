@@ -1,0 +1,12 @@
+﻿@typeparam ItemType
+
+    @if (Parent.AutocompleteDropdownItemTemplate != null)
+    {
+        <div style="@HoveredCSS @DefaultItemStyles" @onmouseover="(() => { Parent.CurrentIndex = this.MyIndex; })" @onmouseout="(() => { Parent.CurrentIndex = -1; StateHasChanged(); })" @onclick="OnClick">
+            @Parent.AutocompleteDropdownItemTemplate(Self)
+        </div>
+    }
+    else
+    {
+        <div style="@HoveredCSS @DefaultItemStyles">Provide an AutocompleteDropdownItemTemplate to the Typeahead</div>
+    }

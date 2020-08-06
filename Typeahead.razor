@@ -1,0 +1,29 @@
+﻿@typeparam ItemType
+
+
+    <div style="display: flex; align-items: center;">
+        @Text
+        <div style="position: relative; height: 100%;">
+            <input style="height: 100%;" placeholder="@Placeholder" @bind="SearchParameter" @bind:event="oninput" type="text" @onfocusin="FocusIn" @onfocusout="FocusOut" @onkeydown="OnKeyDown" />
+            @if (DisplayAutocompleteDropdown && ToggleAutocompleteDropdown)
+            {
+                <div style="position: absolute; z-index: 1; background-color: lightgray; width: 100%;">
+                    @{int i = 0;}
+                    @foreach (ItemType item in AutocompleteResults)
+                    {
+                        <TypeaheadAutocompleteDropdownItem Self="item" Parent="this" MyIndex="i++" />
+                    }
+                </div>
+            }
+        </div>
+        @if (SubmitButtonTemplate != null)
+        {
+            <div style="display: contents;" class="" @onclick="Search">
+                @SubmitButtonTemplate
+            </div>
+        }
+        else
+        {
+            <div @onclick="Search" class="btn btn-primary">Search</div>
+        }
+    </div>  
